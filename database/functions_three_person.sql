@@ -13,10 +13,10 @@
 CREATE OR REPLACE FUNCTION calculate_overdue_fine (
     p_due_time IN TIMESTAMP,
     p_check_time IN TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) RETURN DECIMAL
+) RETURN NUMBER
 IS
     v_overdue_days NUMBER;
-    v_fine DECIMAL(8, 2);
+    v_fine NUMBER(8, 2);
 BEGIN
     IF p_due_time IS NULL OR p_check_time IS NULL THEN
         RETURN 0;

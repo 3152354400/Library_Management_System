@@ -21,23 +21,28 @@ SELECT
     bi.Summary,
     bi.TotalStock,
     bi.AvailableStock,
-    LISTAGG(DISTINCT c.CategoryName, ', ') WITHIN GROUP (ORDER BY c.CategoryName) AS CategoryNames,
-    COUNT(DISTINCT cm.CommentID) AS CommentCount,
-    ROUND(AVG(CASE WHEN cm.Status = '正常' THEN cm.Rating END), 2) AS AverageRating
-FROM BookInfo bi
-LEFT JOIN Book_Classify bc ON bi.ISBN = bc.ISBN
-LEFT JOIN Category c ON bc.CategoryID = c.CategoryID
-LEFT JOIN Comment_Table cm ON bi.ISBN = cm.ISBN AND cm.Status = '正常'
-GROUP BY
-    bi.ISBN,
-    bi.Title,
-    bi.Author,
-    bi.Publisher,
-    bi.PublishYear,
-    bi.Price,
-    bi.Summary,
-    bi.TotalStock,
-    bi.AvailableStock;
+    (
+        SELECT LISTAGG(category_names.CategoryName, ', ') WITHIN GROUP (ORDER BY category_names.CategoryName)
+        FROM (
+            SELECT DISTINCT c.CategoryName
+            FROM Book_Classify bc
+            JOIN Category c ON bc.CategoryID = c.CategoryID
+            WHERE bc.ISBN = bi.ISBN
+        ) category_names
+    ) AS CategoryNames,
+    (
+        SELECT COUNT(*)
+        FROM Comment_Table cm
+        WHERE cm.ISBN = bi.ISBN
+          AND cm.Status = '正常'
+    ) AS CommentCount,
+    (
+        SELECT ROUND(AVG(cm.Rating), 2)
+        FROM Comment_Table cm
+        WHERE cm.ISBN = bi.ISBN
+          AND cm.Status = '正常'
+    ) AS AverageRating
+FROM BookInfo bi;
 
 
 /* =========================================================
