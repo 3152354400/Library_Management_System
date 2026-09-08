@@ -1,0 +1,17 @@
+﻿1. 服务器运行redis(端口6379,密码Sjk202507)
+1. 后端 与 服务器上运行的redis交互
+1. redis连接字段在
+- backend\appsettings.Development.json
+- backend\appsettings.Production.json
+1. 新引入的依赖在readme
+
+```
+dotnet add package StackExchange.Redis
+```
+1. redis服务在启动程序中已注册
+1. redis示例程序在backend\Controllers\redis\RedisTestController.cs
+1. 检验后端与服务器redis正确连接的方法：
+
+- 启动后端
+- 在浏览器打开http://localhost:5000/api/RedisTest/set?key=foo&value=bar
+- 若正确连接，则显示"Redis key set successfully."

@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Oracle ADO.NET 驱动（用于 Dapper） -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Dapper.Oracle" Version="2.0.2" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.9.1" />
+
+    <!-- Dapper ORM -->
+    <PackageReference Include="Dapper" Version="2.1.66" />
+
+    <!-- Entity Framework Core for Oracle -->
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="7.21.11" />
+
+    <!-- 可选：用于从 .env 文件加载环境变量 -->
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.9.17" />
+
+    <!-- Swagger 用于 API 文档 -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\avatars\" />
+  </ItemGroup>
+
+</Project>
