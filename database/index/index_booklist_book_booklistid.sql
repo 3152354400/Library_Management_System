@@ -1,0 +1,1 @@
+CREATE INDEX idx_booklist_book_booklist ON Booklist_Book(BooklistID);

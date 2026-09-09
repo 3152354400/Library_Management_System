@@ -1,0 +1,28 @@
+# ============================================================
+# 图书馆管理系统 - 后端 systemd 服务（服务器上使用）
+# 安装：复制到 /etc/systemd/system/library-api.service
+# 启用：systemctl daemon-reload && systemctl enable --now library-api
+# 查看日志：journalctl -u library-api -f
+# ============================================================
+
+[Unit]
+Description=Library Management System API (.NET 8)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/library
+ExecStart=/usr/bin/dotnet /opt/library/backend.dll
+Restart=always
+RestartSec=5
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_EnableDiagnostics=0
+User=www-data
+Group=www-data
+
+# 安全加固（可选）
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

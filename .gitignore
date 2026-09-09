@@ -1,0 +1,24 @@
+# ===== 构建产物 =====
+bin/
+obj/
+publish/
+publish2/
+dist/
+*.user
+
+# ===== 依赖目录 =====
+node_modules/
+
+# ===== 敏感配置（真实连接串/密码，禁止入库） =====
+backend/appsettings.json
+backend/appsettings.Production.json
+backend/appsettings.Development.json
+**/appsettings.Production.json
+
+# ===== 系统/日志 =====
+*.log
+.DS_Store
+Thumbs.db
+
+# ===== 本地临时 =====
+*.tmp
