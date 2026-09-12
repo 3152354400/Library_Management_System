@@ -67,10 +67,9 @@ const techs = [
 ]
 
 const members = [
-  { name: '张三', role: '前端开发' },
-  { name: '李四', role: '后端开发' },
-  { name: '王五', role: '数据库设计' },
-  { name: '赵六', role: '测试与文档' }
+  { name: '申字凯', role: '数据库' },
+  { name: '沈仲尧', role: '后端 / 前端' },
+  { name: '闻家陆', role: '前端 / 部署' }
 ]
 </script>
 
